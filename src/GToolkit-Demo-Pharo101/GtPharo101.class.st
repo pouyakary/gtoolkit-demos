@@ -54,7 +54,7 @@ GtPharo101 >> binaryMessagesExplanationSlideFor: aSlide [
 '"The operand & is also a binary message. Here it is sent to true with false as argument"
 true & false.'.
 							'"Here, the message is <="
-41 <= 42.' . 
+41 <= 42.' .
 '"The message comma applies to ''ab'' with the argument being ''cd''"
 ''ab'',''cd''.' };
 			asElement ];
@@ -99,7 +99,7 @@ GtPharo101 >> booleansExplanationSlideFor: aSlide [
 		newTextWithFormat: (self subtitleString: 'Booleans');
 		newTextWithFormat: (self descriptionString: 'Booleans are objects that can be either true or false.');
 		element: [
-			GtPlaygroundLiveSlide new 
+			GtPlaygroundLiveSlide new
 				snippets: {('1 > 2 ').
 							'''hello world''=''hello world'''.
 							'true'.
@@ -133,7 +133,7 @@ GtPharo101 >> charactersExplanationSlideFor: aSlide [
 		priority: 7;
 		newTextWithFormat: (self subtitleString: 'Characters');
 		newTextWithFormat: (self descriptionString: 'They are instantiated using the $ operator.');
-		element: [ GtPlaygroundLiveSlide new 
+		element: [ GtPlaygroundLiveSlide new
 			snippets: {'$A.' . '$A class.' . '$A charCode.' . '"You can print all 256 characters of the ASCII extended set"
 Character allByteCharacters.'.
 							'"Showing the ASCII code of the space character"
@@ -165,7 +165,7 @@ GtPharo101 >> conditionalsExplanationSlideFor: aSlide [
 		newTextWithFormat: (self subtitleString: 'Conditionals');
 		newTextWithFormat: (self descriptionString: 'Conditionals are messages sent to Boolean objects. The main messages are #ifTrue:, #ifFalse: and #ifTrue:ifFalse:.');
 		element: [ GtPlaygroundLiveSlide new
-			snippets: { 
+			snippets: {
 				('1 < 2' , String cr , String tab, 'ifTrue:[ 42 ]', String cr , String tab, 'ifFalse: [ 100 ].').
 				('$a > $b' , String cr , String tab, 'ifTrue:[ 100 ]', String cr , String tab, 'ifFalse:[ 42 ].') };
 			asElement ];
@@ -233,8 +233,8 @@ GtPharo101 >> instantiationTitleSlideFor: aSlide [
 		priority: 35;
 		titleWithFormat: ('Pharo101' asRopedText glamorousRegularFont fontSize: 70);
 		subtitleWithFormat:
-			('Instantiation' asRopedText 
-				glamorousRegularFont 
+			('Instantiation' asRopedText
+				glamorousRegularFont
 				fontSize: 50;
 				foreground: Color gray).
 ]
@@ -374,7 +374,7 @@ GtPharo101 >> numbersExplanationSlideFor: aSlide [
 		priority: 6;
 		newTextWithFormat: (self subtitleString: 'Numbers');
 		newTextWithFormat: (self descriptionString: 'These are all numbers: 2, 42, 2/84. And they all respond to various messages evaluating mathematical expressions.');
-		element: [ GtPlaygroundLiveSlide new 
+		element: [ GtPlaygroundLiveSlide new
 			snippets: {'40 + 2.' . '42 factorial.' . '2/84.' . '42 class maxVal.'};
 			asElement ];
 		elementWeight: 0.6.
@@ -452,7 +452,7 @@ GtPharo101 >> reflectionTitleSlideFor: aSlide [
 		titleWithFormat: ('Pharo101' asRopedText glamorousRegularFont; fontSize: 70);
 		subtitleWithFormat:
 			('Reflection' asRopedText
-				glamorousRegularFont; 
+				glamorousRegularFont;
 				fontSize: 50;
 				foreground: Color gray).
 ]
@@ -485,7 +485,7 @@ GtPharo101 >> shortPlaygroundExplanation [
 	<gtExample>
 	| container playgroundElement newSnippetButtons inspectButtons aScripter snippets |
 	container := BlElement new
-			constraintsDo: [ :c | 
+			constraintsDo: [ :c |
 				c vertical matchParent.
 				c horizontal matchParent ];
 			layout: BlLinearLayout horizontal;
@@ -504,9 +504,9 @@ a - b'};
 	aScripter element: playgroundElement.
 	aScripter
 		substep: 'Selecting snippets'
-		do: [ :aStep | 
+		do: [ :aStep |
 			aStep
-				clickStep: [ :s | 
+				clickStep: [ :s |
 					s
 						label: 'Click on snippet';
 						onBreadthFirstChildOfClass: LePharoSnippetElement ].
@@ -525,16 +525,16 @@ a - b'};
 { #category : #accessing }
 GtPharo101 >> shortPlaygroundExplanationText [
 	| text |
-	
-	text := 'This slideshow relies on playground like this in which you can play around with the code, having one or more snippets that you can inspect. You do that with the ' asRopedText,
+
+	text := 'This slideshow relies on playgrounds like this in which you can play around with the code, having one or more snippets that you can inspect. You do that with the ' asRopedText,
 ('inspect' asRopedText glamorousExplanationFor: #inspectButton),
 ' button. Pressing it, opens up an inspector on the result which is produced by the last line executed in that snippet. In our case, it will be the sum for the ' asRopedText,
 ('first' asRopedText glamorousExplanationFor: #firstSnippet),
 ' snippet and the difference for the ' asRopedText,
 ('second' asRopedText glamorousExplanationFor: #secondSnippet),
 ' one.' asRopedText.
-	
-	^ text 
+
+	^ text
 		glamorousRegularFont;
 		fontSize: 20;
 		foreground: Color black.
@@ -546,8 +546,8 @@ GtPharo101 >> stringsExplanationSlideFor: aSlide [
 	^ aSlide textAndElement
 		priority: 8;
 		newTextWithFormat: (self subtitleString: 'Strings');
-		newTextWithFormat: (self descriptionString: 'A string is a collection of characters and it is defined between two single quotes. Each character in a string can be accessed using the #at: message and by using the comma operator, two strings can be concatenated.');
-		element: [GtPlaygroundLiveSlide new 
+		newTextWithFormat: (self descriptionString: 'A string is a collection of characters, and it is defined between two single quotes. Each character in a string can be accessed using the #at: message and by using the comma operator, two strings can be concatenated.');
+		element: [GtPlaygroundLiveSlide new
 			snippets: {'''This is a string''.'. '''This is a string'' size.'.
 						 '''abc'' asUppercase.'. '''Hello world'' reverse.'. '''Hello world'' at: 7.'.
 						 '''Hello'','' world''.'};
@@ -569,11 +569,11 @@ GtPharo101 >> symbolsExplanationSlideFor: aSlide [
 		newTextWithFormat: (self descriptionString: 'A symbol is a string guaranteed to be globally unique, meaning that there is only one #MySymbol symbol, but there are multiple ''MySymbol'' string objects.');
 		element: [GtPlaygroundLiveSlide new
 			snippets: {'"Turns the String into a Symbol"
-''MySymbol'' asSymbol.'. 
+''MySymbol'' asSymbol.'.
 							'"Turns the Symbol into a String"
 #MySymbol asString.'.
 							'"Message == return true is the two objects are the SAME"
-(2 asString) == (2 asString).'. 
+(2 asString) == (2 asString).'.
 							'(2 asString) asSymbol == (2 asString) asSymbol.'};
 			asElement ];
 		elementWeight: 0.6.
@@ -585,8 +585,8 @@ GtPharo101 >> syntaxExplanationWithLinksSlideFor: aSlide [
 	^ aSlide labelAndElement
 		priority: 39;
 		element: [
-			((GtPharoMethodExample>>#exampleWithNumber:) 
-				gtViewNodesExplanationWithLinksFor: GtPhlowEmptyView new) 
+			((GtPharoMethodExample>>#exampleWithNumber:)
+				gtViewNodesExplanationWithLinksFor: GtPhlowEmptyView new)
 					asElementDo: [:e | e ]];
 		newFadedText: ('Let''s put it all together. Take a look at the method below. Hover over the syntactical parts on the left to understand how they map on the different parts of the method.' asRopedText fontSize: 70)
 ]
@@ -596,11 +596,11 @@ GtPharo101 >> title: aSlide [
 	<gtSlide>
 	^ aSlide title
 		priority: 1;
-		titleWithFormat: ('Pharo 101' asRopedText 
+		titleWithFormat: ('Pharo 101' asRopedText
 			glamorousRegularFont;
 			bold;
 			fontSize: 50);
-		subtitleWithFormat: ('language' asRopedText 
+		subtitleWithFormat: ('language' asRopedText
 			fontSize: 40;
 			thin;
 			glamorousRegularFont)
