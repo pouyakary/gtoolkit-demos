@@ -136,8 +136,9 @@ For each ' asRopedText,
 ('avatar' asRopedText glamorousExplanationFor: #avatar),
 ', the ' asRopedText,
 ('full name' asRopedText glamorousExplanationFor: #fullName),
-' and the ' asRopedText,
-('telephone' asRopedText glamorousExplanationFor: #telephone).
+', and the ' asRopedText,
+('telephone' asRopedText glamorousExplanationFor: #telephone),
+'.' asRopedText.
 	^ text
 		glamorousRegularFont;
 		fontSize: 20;
