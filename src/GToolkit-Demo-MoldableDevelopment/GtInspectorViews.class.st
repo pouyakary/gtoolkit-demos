@@ -62,7 +62,7 @@ GtInspectorViews >> columnedListViewExplanationWithLinks [
 	resultInspectorTree := resultElement phlow firstChildWithViewContent.
 
 	titleTab := resultInspectorTree
-			allChildrenBreadthFirstDetect: [ :aChild | 
+			allChildrenBreadthFirstDetect: [ :aChild |
 				(aChild isKindOf: BrTab)
 					and: [ aChild label asString = 'Contacts with details' ] ]
 			ifFound: [ :aChild | aChild ].
@@ -78,7 +78,7 @@ GtInspectorViews >> columnedListViewExplanationWithLinks [
 	avatarElementsCollection := resultInspectorTree
 			allChildrenBreadthFirstSelect: [ :aChild | aChild isKindOf: BrHorizontalPane ].
 	listLabelsCollection := resultInspectorTree
-			allChildrenBreadthFirstSelect: [ :aChild | 
+			allChildrenBreadthFirstSelect: [ :aChild |
 				(aChild isKindOf: BlTextElement)
 					and: [ aChild parent parent isKindOf: GtPhlowCellElement ] ].
 
@@ -95,13 +95,13 @@ GtInspectorViews >> columnedListViewExplanationWithLinks [
 		addChild: ((self yellowExplanationTargetCircleFor: #columns)
 				relocate: 5 @ phoneLabel extent y / 2).
 	avatarElementsCollection
-		do: [ :eachAvatar | 
+		do: [ :eachAvatar |
 			eachAvatar parent
 				addChild: ((self yellowExplanationTargetCircleFor: #avatar)
 						relocate: 0 @ eachAvatar extent y / 2) ].
 
 	listLabelsCollection
-		do: [ :eachLabel | 
+		do: [ :eachLabel |
 			| modelName |
 			modelName := (eachLabel text asString beginsWith: '+' asString)
 					ifTrue: [ #telephone ]
@@ -117,7 +117,7 @@ GtInspectorViews >> columnedListViewExplanationWithLinks [
 { #category : #accessing }
 GtInspectorViews >> columnedListViewExplanationWithLinksText [
 	| text |
-	
+
 	text := 'Next we have a ' asRopedText,
 ('columned list' asRopedText glamorousExplanationFor: #columnedList),
 ' view that consists of a ' asRopedText,
@@ -130,7 +130,7 @@ The columned list has as many rows as the collection returned by the ' asRopedTe
 ' block. In this case, this means it shows all the ' asRopedText,
 ('contacts' asRopedText glamorousExplanationFor: #contacts),
 ' in the address book.
-For each ' asRopedText, 
+For each ' asRopedText,
 ('contact' asRopedText glamorousExplanationFor: #aContact),
 ' we show the ' asRopedText,
 ('avatar' asRopedText glamorousExplanationFor: #avatar),
@@ -190,17 +190,17 @@ GtInspectorViews >> columnedTreeViewExplanationWithLinks [
 							gtViewContactsAddressOn: GtPhlowView empty};
 				labelled: 'a GtABAddressBook (My contacts)' asRopedText)
 				asElementDo: [ :e | e ].
-	
+
 	resultInspectorContainer addChild: resultElement.
-	
+
 	verticalContainer addChild: codeExplanationLabel.
 	verticalContainer addChild: coderElement.
 	verticalContainer addChild: resultExplanationLabel.
 	verticalContainer addChild: resultInspectorContainer.
 
-	
+
 	BlScripter new element: verticalContainer; elementWithoutParent.
-	
+
 	resultInspectorTree := resultElement phlow firstChildWithViewContent.
 
 	titleTab := resultInspectorTree
@@ -236,7 +236,7 @@ GtInspectorViews >> columnedTreeViewExplanationWithLinks [
 { #category : #accessing }
 GtInspectorViews >> columnedTreeViewExplanationWithLinksText [
 	| text |
-	
+
 	text := 'The ' asRopedText,
 ('columned tree' asRopedText glamorousExplanationFor: #columnedTree),
 ' view shows a tree, and for every item in the tree the information is displayed in multiple columns.
@@ -252,7 +252,7 @@ After we give it a ' asRopedText,
 Lastly, in the ' asRopedText,
 ('children:' asRopedText glamorousExplanationFor: #children:),
 ' block we tell each parent the children it has.' asRopedText.
-	
+
 	^ text
 		glamorousRegularFont;
 		fontSize: 20;
@@ -273,43 +273,43 @@ GtInspectorViews >> emptyViewExplanationSlideFor: aSlide [
 GtInspectorViews >> emptyViewExplanationWithLinks [
 	<gtExample>
 	| resultInspectorContainer verticalContainer coder coderViewModel coderElement selectors variables literals resultElement codeExplanationLabel resultExplanationLabel inspectorHeader inspectorView |
-	
+
 	resultInspectorContainer := self resultInspectorContainerElement.
 	verticalContainer := self verticalContainerElement.
-	
+
 	codeExplanationLabel := self explanationLabelWithText: 'Empty view method'.
 	resultExplanationLabel := self explanationLabelWithText: 'Emtpy view result'.
-	
+
 	selectors := GtSelectorExplanationLinkStyler new.
 	selectors addSelectors: #(empty).
-	
+
 	literals := GtLiteralExplanationLinkStyler new.
 	literals addLiteral: 'Contacts Tree' withIdentifier: #viewName.
-	
+
 	variables := GtVariableExplanationLinkStyler new.
 	variables addVariables: {#aView}.
-	
+
 	coder := GtPharoMethodCoder new forMethod: (GtABAddressBook>>#gtViewCategoriesTreeWithContactsOn:).
 	coderViewModel := coder asCoderViewModel.
 	coderViewModel addStylers: { selectors. variables. literals }.
 
 	coderElement := coderViewModel asElement margin: (BlInsets all: 10).
 	coderElement vMatchParent.
-	
+
 	resultElement := (GtABAddressBookExample new myContactsAddressBook gtViewsFor: GtPhlowView empty) asElementDo: [ :e | e ].
-	
+
 	resultInspectorContainer addChild: resultElement.
-	
+
 	verticalContainer addChild: codeExplanationLabel.
 	verticalContainer addChild: coderElement.
 	verticalContainer addChild: resultExplanationLabel.
 	verticalContainer addChild: resultInspectorContainer.
-	
+
 	BlScripter new element: verticalContainer; elementWithoutParent.
-	
+
 	inspectorHeader := resultElement phlow firstChildWithViewContent.
 	inspectorView := inspectorHeader phlow firstChildWithViewContent.
-	
+
 	inspectorHeader
 		addChild:
 			((self yellowExplanationTargetCircleFor: #inspector)
@@ -320,7 +320,7 @@ GtInspectorViews >> emptyViewExplanationWithLinks [
 			((self yellowExplanationTargetCircleFor: #viewTabs)
 				relocate:
 					(inspectorView position)).
-	
+
 
 	^ verticalContainer.
 ]
@@ -341,7 +341,7 @@ As you can see in the example below, if the address book does not have any categ
 ' view is empty so the tab does not appear on the ' asRopedText,
 ('tabs list' asRopedText glamorousExplanationFor: #viewTabs),
 '.' asRopedText.
-	
+
 	^ text
 		glamorousRegularFont;
 		fontSize: 20;
@@ -415,17 +415,17 @@ GtInspectorViews >> explicitViewExplanationWithLinks [
 			allChildrenBreadthFirstDetect: [ :aChild | (aChild isKindOf: BlTextElement) and: [ aChild text asString = 'Jane Doe' ] ]
 			ifFound: [ :aChild | aChild ].
 	phoneTextElement := resultInspectorTree
-			allChildrenBreadthFirstDetect: [ :aChild | 
+			allChildrenBreadthFirstDetect: [ :aChild |
 				(aChild isKindOf: BrTextElementWithCursors)
 					and: [ aChild text asString = '+41-74574363' ] ]
 			ifFound: [ :aChild | aChild ].
 	addressTextElement := resultInspectorTree
-			allChildrenBreadthFirstDetect: [ :aChild | 
+			allChildrenBreadthFirstDetect: [ :aChild |
 				(aChild isKindOf: BrTextElementWithCursors)
 					and: [ aChild text asString includesSubstring: 'Bern,' ] ]
 			ifFound: [ :aChild | aChild ].
 	avatarElement := resultInspectorTree
-			allChildrenBreadthFirstDetect: [ :aChild | 
+			allChildrenBreadthFirstDetect: [ :aChild |
 				aChild children isEmpty
 					and: [ aChild parent parent parent isKindOf: BlScrollableElement ] ]
 			ifFound: [ :aChild | aChild ].
@@ -452,12 +452,12 @@ GtInspectorViews >> explicitViewExplanationWithLinks [
 GtInspectorViews >> explicitViewExplanationWithLinksText [
 	<gtExample>
 	| text |
-	
+
 	text := 'The ' asRopedText,
 ('explicit' asRopedText glamorousExplanationFor: #explicit),
 ' view lets you visualize an object in any way you want. Using the ' asRopedText,
 ('stencil: ' asRopedText glamorousExplanationFor: #stencil:),
-' block you can give that visualization any shape or form. 
+' block you can give that visualization any shape or form.
 In this example, we show a ' asRopedText,
 ('contact' asRopedText glamorousExplanationFor: #self),
 ' as a business card. We displays its ' asRopedText,
@@ -469,7 +469,7 @@ In this example, we show a ' asRopedText,
 ' and ' asRopedText,
 ('avatar' asRopedText glamorousExplanationFor: #avatar),
 ', all within a nice simple layout.' asRopedText.
-	
+
 	^ text
 		glamorousRegularFont;
 		fontSize: 20;
@@ -534,7 +534,7 @@ GtInspectorViews >> listViewExplanationWithLinks [
 			allChildrenBreadthFirstDetect: [ :aChild | (aChild isKindOf: BrTab) and: [ aChild label asString = 'Contacts list' ] ]
 			ifFound: [ :aChild | aChild ].
 	nameLabelsCollection := resultInspectorTree
-			allChildrenBreadthFirstSelect: [ :aChild | 
+			allChildrenBreadthFirstSelect: [ :aChild |
 				(aChild isKindOf: BrLabel)
 					and: [ aChild parent parent isKindOf: BrInfiniteListElement ] ].
 
@@ -544,7 +544,7 @@ GtInspectorViews >> listViewExplanationWithLinks [
 		addChild: ((self yellowExplanationTargetCircleFor: #title:)
 				relocate: 10 @ titleTab extent y / 2).
 	nameLabelsCollection
-		do: [ :eachLabel | 
+		do: [ :eachLabel |
 			eachLabel
 				addChild: ((self yellowExplanationTargetCircleFor: #fullName)
 						relocate: -5 @ eachLabel extent y / 2) ].
@@ -557,7 +557,7 @@ GtInspectorViews >> listViewExplanationWithLinks [
 { #category : #accessing }
 GtInspectorViews >> listViewExplanationWithLinksText [
 	| text |
-	
+
 	text := 'Lets take a look at a ' asRopedText,
 ('list' asRopedText glamorousExplanationFor: #list),
 ' view. It has a ' asRopedText,
@@ -565,12 +565,12 @@ GtInspectorViews >> listViewExplanationWithLinksText [
 ' and a ' asRopedText,
 ('format' asRopedText glamorousExplanationFor: #itemText:),
 ' for the rows, in the form of a text element.
-The number of rows it has it is exactly the number of elements in the collection returned by the ' asRopedText,
+The number of rows it has is exactly the number of elements in the collection returned by the ' asRopedText,
 ('items:' asRopedText glamorousExplanationFor: #items:),
 ' block. In this case, this means it shows all the ' asRopedText,
 ('contacts' asRopedText glamorousExplanationFor: #contacts),
 ' in the address book.
-For each ' asRopedText, 
+For each ' asRopedText,
 ('contact' asRopedText glamorousExplanationFor: #aContact),
 ' we show the ' asRopedText,
 ('full name' asRopedText glamorousExplanationFor: #fullName),
@@ -585,7 +585,7 @@ For each ' asRopedText,
 { #category : #utility }
 GtInspectorViews >> mainContainerElement [
 	^ BlElement new
-		constraintsDo: [ :c | 
+		constraintsDo: [ :c |
 			c horizontal matchParent.
 			c vertical matchParent];
 		layout: BlLinearLayout horizontal.
@@ -654,7 +654,7 @@ GtInspectorViews >> mondrianViewExplanationWithLinks [
 { #category : #accessing }
 GtInspectorViews >> mondrianViewExplanationWithLinksText [
 	| text |
-	
+
 	text := 'The ' asRopedText,
 ('mondrian' asRopedText glamorousExplanationFor: #mondrian),
 ' view allows us to see an object in different layouts using graph like representations.
@@ -686,7 +686,7 @@ Then we set the ' asRopedText,
 GtInspectorViews >> queriesSnippetsExamples [
 	<gtExample>
 	| container |
-	
+
 	container := GtPlaygroundLiveSlide new
 						snippets:
 							{
@@ -709,14 +709,14 @@ GtInspectorViews >> queriesSnippetsExamples [
 								'"empty view"
 #gtView gtPragmas & #empty gtReferences'};
 						asElement.
-	
+
 	^ container.
 ]
 
 { #category : #utility }
 GtInspectorViews >> resultInspectorContainerElement [
 	^ BlElement new
-		constraintsDo: [ :c | 
+		constraintsDo: [ :c |
 			c horizontal matchParent.
 			c vertical matchParent ];
 		layout: BlLinearLayout horizontal;
@@ -739,8 +739,8 @@ GtInspectorViews >> textEditorElementWithText: aText [
 	^ (BrEditor new
 		aptitude: (BrGlamorousRegularEditorAptitude new fontSize: 16; lineSpacing: 2);
 		text: aText;
-		vFitContent; 
-		hMatchParent) asScalableElement 
+		vFitContent;
+		hMatchParent) asScalableElement
 			maxScale: 1;
 			margin: (BlInsets all: 50);
 			constraintsDo: [ :c | c linear weight: 0.3]
@@ -820,7 +820,7 @@ GtInspectorViews >> textEditorViewExplanationWithLinks [
 { #category : #accessing }
 GtInspectorViews >> textEditorViewExplanationWithLinksText [
 	| text |
-	
+
 	text := 'With the ' asRopedText,
 ('text editor' asRopedText glamorousExplanationFor: #textEditor),
 ' view we can print plain text on the screen.
@@ -835,7 +835,7 @@ The view gets a ' asRopedText,
 ', in this case the ' asRopedText,
 ('content' asRopedText glamorousExplanationFor: #content),
 ' of the note.' asRopedText.
-	
+
 	^ text
 		glamorousRegularFont;
 		fontSize: 20;
@@ -923,7 +923,7 @@ GtInspectorViews >> treeViewExplanationWithLinks [
 			allChildrenBreadthFirstDetect: [ :aChild | (aChild isKindOf: BrLabel) and: [ aChild text asString = 'Family' ] ]
 			ifFound: [ :aChild | aChild ].
 	categoryLabelsCollection := resultInspectorTree
-			allChildrenBreadthFirstSelect: [ :aChild | 
+			allChildrenBreadthFirstSelect: [ :aChild |
 				(aChild isKindOf: BrLabel)
 					and: [ aChild parent parent parent isKindOf: BrInfiniteTreeElement ] ].
 
@@ -937,7 +937,7 @@ GtInspectorViews >> treeViewExplanationWithLinks [
 				relocate:
 					(-5 @ treeLabel extent y / 2))."
 	categoryLabelsCollection
-		do: [ :eachLabel | 
+		do: [ :eachLabel |
 			eachLabel
 				addChild: ((self yellowExplanationTargetCircleFor: #categories)
 						relocate: -5 @ eachLabel extent y / 2) ].
@@ -950,7 +950,7 @@ GtInspectorViews >> treeViewExplanationWithLinks [
 { #category : #accessing }
 GtInspectorViews >> treeViewExplanationWithLinksText [
 	| text |
-	
+
 	text := 'The ' asRopedText,
 ('tree' asRopedText glamorousExplanationFor: #tree),
 ' view displays the information as a tree structure, having parents and children.
@@ -980,7 +980,7 @@ After that, in the ' asRopedText,
 { #category : #utility }
 GtInspectorViews >> verticalContainerElement [
 	^ BlElement new
-		constraintsDo: [ :c | 
+		constraintsDo: [ :c |
 			c horizontal matchParent.
 			c vertical matchParent.
 			c padding: (BlInsets all: 5)];
