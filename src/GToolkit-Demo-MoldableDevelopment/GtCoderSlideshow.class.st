@@ -36,7 +36,7 @@ GtCoderSlideshow >> advancedMethodsFilteringExplanationWithLinks [
 	| coderElement categoryTarget fieldTarget addTarget |
 	coderElement := BlUseAsyncFeatures
 		disableDuring: [ self ensureOldFilterWidgetsDuring: [ (GtClassCoderLiveSlide new class: GtABAddressBook) asElement ] ].
-	
+
 	coderElement
 		allChildrenBreadthFirstDetect: [:aChild |
 			aChild isKindOf: GtFiltersElement]
@@ -44,7 +44,7 @@ GtCoderSlideshow >> advancedMethodsFilteringExplanationWithLinks [
 			categoryTarget := filters childAt: 1.
 			fieldTarget := filters childAt: 1.
 			addTarget := filters childAt: 2].
-	
+
 	categoryTarget
 		addChild:
 			((self yellowExplanationTargetCircleFor: #dropdown)
@@ -60,7 +60,7 @@ GtCoderSlideshow >> advancedMethodsFilteringExplanationWithLinks [
 			((self yellowExplanationTargetCircleFor: #addFilterButton)
 					relocate:
 						(2 @ addTarget extent y / 2)).
-	
+
 	^ BlElement new
 		constraintsDo: [:c |
 			c vertical matchParent.
@@ -91,7 +91,7 @@ GtCoderSlideshow >> baselineMethodsExplanationText [
 ' denoting its name. Coder recognizes this and allows us to expand ' asRopedText,
 ('expand' asRopedText glamorousExplanationFor: #expandButton),
 ' the string in place and browse the corresponding dependency.' asRopedText.
-	
+
 	^ text asRopedText
 		glamorousRegularFont;
 		fontSize: 20.
@@ -111,12 +111,12 @@ GtCoderSlideshow >> baselineMethodsExplanationWithLinks [
 			allChildrenBreadthFirstDetect: [ :aChild | aChild isKindOf: BrInfiniteListElement ]
 			ifFound: [ :aChild | aChild childAt: 1 ].
 	pragmaTarget := expandedMethodElement
-			allChildrenBreadthFirstDetect: [ :aChild | 
+			allChildrenBreadthFirstDetect: [ :aChild |
 				(aChild isKindOf: BrTextElementWithCursors)
 					and: [ aChild text asString includesSubstring: '<baseline>' ] ]
 			ifFound: [ :aChild | aChild ].
 	baselineTarget := expandedMethodElement
-			allChildrenBreadthFirstDetect: [ :aChild | 
+			allChildrenBreadthFirstDetect: [ :aChild |
 				(aChild isKindOf: BrTextElementWithCursors)
 					and: [ aChild text asString includesSubstring: '''GToolkitVirtualMachine''' ] ]
 			ifFound: [ :aChild | aChild ].
@@ -138,13 +138,13 @@ GtCoderSlideshow >> baselineMethodsExplanationWithLinks [
 	aScripter element: classCoderElement.
 
 	aScripter
-		clickStep: [ :s | 
+		clickStep: [ :s |
 			s
 				label: 'Expand baseline in place';
 				id: GtSourceCoderEmbeddedExpanderToggleId index: 1 ].
 
 	^ BlElement new
-		constraintsDo: [ :c | 
+		constraintsDo: [ :c |
 			c vertical matchParent.
 			c horizontal matchParent ];
 		aptitude: BrShadowAptitude;
@@ -161,7 +161,7 @@ GtCoderSlideshow >> basicMethodsFilteringExplanationSlideFor: aSlide [
 		newTextWithFormat: self basicMethodsFilteringExplanationText;
 		element: [ self basicMethodsFilteringExplanationWithLinks ];
 		elementWeight: 0.6;
-		onEveryAddToSceneGraphDo: 
+		onEveryAddToSceneGraphDo:
 			[:anElement |
 				| coderElement button |
 				coderElement := anElement childAt: 2.
@@ -180,8 +180,8 @@ GtCoderSlideshow >> basicMethodsFilteringExplanationText [
 	| text |
 	text := 'There are two ways through which you can filter the methods. The first one is by clicking on the ' asRopedText,
 ('filter button' asRopedText glamorousExplanationFor: #filterButton),
-'. This opens a pop-up with three choices to search by: category, instance variable or class variable. Choosing one will filter the methods according to that choice.' asRopedText.
-	
+'. This opens a pop-up with three choices to search by: category, instance variable, or class variable. Choosing one will filter the methods according to that choice.' asRopedText.
+
 	^ text asRopedText
 		glamorousRegularFont;
 		fontSize: 20.
@@ -192,7 +192,7 @@ GtCoderSlideshow >> basicMethodsFilteringExplanationWithLinks [
 	| coderElement filterButton |
 	coderElement := BlUseAsyncFeatures
 		disableDuring: [ (GtClassCoderLiveSlide new class: GtABAddressBook) asElement ].
-	
+
 	filterButton := coderElement
 		allChildrenBreadthFirstDetect: [:aChild |
 			(aChild isKindOf: BrToolbar) and: [aChild parent parent parent isKindOf: BrTabGroup]]
@@ -202,7 +202,7 @@ GtCoderSlideshow >> basicMethodsFilteringExplanationWithLinks [
 			((self yellowExplanationTargetCircleFor: #filterButton)
 					relocate:
 						(2 @ filterButton extent y / 2)).
-						
+
 	^ BlElement new
 		constraintsDo: [:c |
 			c vertical matchParent.
@@ -216,7 +216,7 @@ GtCoderSlideshow >> basicMethodsFilteringExplanationWithLinks [
 { #category : #accessing }
 GtCoderSlideshow >> classCoderInterfaceExplanationText [
 	| text |
-	
+
 	text := 'Focusing on the class coder, it has a header section where you can find the ' asRopedText,
 ('class name' asRopedText glamorousExplanationFor: #className),
 ', alongside a ' asRopedText,
@@ -253,42 +253,42 @@ Finally, there is the list of methods, where each one can be ' asRopedText,
 { #category : #accessing }
 GtCoderSlideshow >> classCoderInterfaceExplanationWithLinks [
 	| classCoderElement classNameTarget removeClassTarget expandHeaderTarget methodsTabTarget referencesTabTarget commentTabTarget addMethodTarget filterMethodsTarget expandMethodTarget saveMethodTarget removeMethodTarget buttonsList |
-	
+
 	classCoderElement := BlUseAsyncFeatures
-		disableDuring: [ 
-			(GtClassCoderLiveSlide new 
+		disableDuring: [
+			(GtClassCoderLiveSlide new
 				class: GtABAddressBook;
 				expandMethodAt: 3) asElement ].
-	
+
 	classNameTarget := classCoderElement
-		allChildrenBreadthFirstDetect: [:aChild | 
+		allChildrenBreadthFirstDetect: [:aChild |
 			(aChild isKindOf: BrTextElementWithCursors) and: [aChild text asString = 'GtABAddressBook' asString]]
 		ifFound: [:aChild | aChild].
 	removeClassTarget := classCoderElement
-		allChildrenBreadthFirstDetect: [:aChild | 
+		allChildrenBreadthFirstDetect: [:aChild |
 			aChild isKindOf: GtPreviewChangeButton]
 		ifFound: [:aChild | aChild].
 	expandHeaderTarget := classCoderElement
-		allChildrenBreadthFirstDetect: [:aChild | 
+		allChildrenBreadthFirstDetect: [:aChild |
 			aChild isKindOf: GtPharoBehaviorDefinitionCoderElement]
 		ifFound: [:aChild | aChild childAt: 1].
 	methodsTabTarget := classCoderElement
-		allChildrenBreadthFirstDetect: [:aChild | 
+		allChildrenBreadthFirstDetect: [:aChild |
 			(aChild isKindOf: BlTextElement) and: [aChild text asString = 'Methods' asString]]
 		ifFound: [:aChild | aChild].
 	referencesTabTarget := classCoderElement
-		allChildrenBreadthFirstDetect: [:aChild | 
+		allChildrenBreadthFirstDetect: [:aChild |
 			(aChild isKindOf: BlTextElement) and: [aChild text asString = 'References' asString]]
 		ifFound: [:aChild | aChild].
 	commentTabTarget := classCoderElement
-		allChildrenBreadthFirstDetect: [:aChild | 
+		allChildrenBreadthFirstDetect: [:aChild |
 			(aChild isKindOf: BlTextElement) and: [aChild text asString = 'Comment' asString]]
 		ifFound: [:aChild | aChild].
 	expandMethodTarget := classCoderElement
-		allChildrenBreadthFirstDetect: [:aChild | 
+		allChildrenBreadthFirstDetect: [:aChild |
 			aChild isKindOf: BrInfiniteListElement]
 		ifFound: [:aChild | (aChild childAt: 3) childAt: 1].
-		
+
 	buttonsList := classCoderElement
 		allChildrenBreadthFirstSelect: [:aChild |
 			(aChild isKindOf: BrButton) and: [aChild parent isKindOf: BrToolbar]].
@@ -296,7 +296,7 @@ GtCoderSlideshow >> classCoderInterfaceExplanationWithLinks [
 	filterMethodsTarget := buttonsList at: 1.
 	saveMethodTarget := buttonsList at: 3.
 	removeMethodTarget := buttonsList at: 4.
-	
+
 	classNameTarget
 		addChild:
 			((self yellowExplanationTargetCircleFor: #className)
@@ -368,7 +368,7 @@ GtCoderSlideshow >> classCreationExplanationSlideFor: aSlide [
 		newTextWithFormat: self createClassExplanationText;
 		element: [ self createClassExplanationWithLinks ];
 		elementWeight: 0.6;
-		onEveryAddToSceneGraphDo: [ :anElement | 
+		onEveryAddToSceneGraphDo: [ :anElement |
 			| coderElement button |
 			coderElement := anElement childAt: 2.
 			coderElement
@@ -392,7 +392,7 @@ GtCoderSlideshow >> coder: aSlide [
 GtCoderSlideshow >> coderExplanationText [
 	| text |
 	text := 'Coder is the place where you can manage your code. It offers you the means through which you can manipulate static code. You can create and manage packages, classes and methods all in place.' asRopedText.
-	
+
 	^ text
 		glamorousRegularFont;
 		fontSize: 20.
@@ -424,7 +424,7 @@ On top of that there is an ' asRopedText,
 ' for creating new classes and a ' asRopedText,
 ('spotter button' asRopedText glamorousExplanationFor: #spotterButton),
 ' to open a spotter in the context of the current class.' asRopedText.
-	
+
 	^ text asRopedText
 		glamorousRegularFont;
 		fontSize: 20.
@@ -439,12 +439,12 @@ GtCoderSlideshow >> coderInterfaceExplanationWithLinks [
 			elementWithoutParent.
 
 	packageHierarchyTarget := coderElement
-			allChildrenBreadthFirstDetect: [ :aChild | 
+			allChildrenBreadthFirstDetect: [ :aChild |
 				(aChild isKindOf: BlTextElement)
 					and: [ aChild text asString = 'Package Hierarchy' asString ] ]
 			ifFound: [ :aChild | aChild ].
 	classHierarchyTarget := coderElement
-			allChildrenBreadthFirstDetect: [ :aChild | 
+			allChildrenBreadthFirstDetect: [ :aChild |
 				(aChild isKindOf: BlTextElement)
 					and: [ aChild text asString = 'Class Hierarchy' asString ] ]
 			ifFound: [ :aChild | aChild ].
@@ -475,11 +475,11 @@ GtCoderSlideshow >> coderInterfaceExplanationWithLinks [
 GtCoderSlideshow >> coderMashExample [
 	<gtExample>
 	^ (GtMashExampleLiveSlide new
-		leftElement: 
+		leftElement:
 			(BlElement new
 				aptitude: BrShadowAptitude;
 				background: Color white;
-				addChild: ((GtClassCoderLiveSlide new 
+				addChild: ((GtClassCoderLiveSlide new
 					class: GtPharoBehaviorCoder;
 					expandHeader: true) asElement));
 		centerElement:
@@ -492,7 +492,7 @@ GtCoderSlideshow >> coderMashExample [
 		rightElement:
 			(BlElement new
 				margin: (BlInsets all: 5);
-				addChild: (((GtPharoMethodCoder 
+				addChild: (((GtPharoMethodCoder
 					forMethod: GtABAddressBookExample>>#myContactsAddressBook) asCoderViewModel
 						expanded:true) asElement))) asElement.
 ]
@@ -513,7 +513,7 @@ GtCoderSlideshow >> createClassExplanationText [
 	text := 'To create a new class, you click on the ' asRopedText,
 ('+' asRopedText glamorousExplanationFor: #addClassButton),
 ' button in the top right of the pane. That will open a pop-up similar to the expanded class header. There you can edit the name of the class, the superclass, the package, traits, instance and class variables.' asRopedText.
-	
+
 	^ text asRopedText
 		glamorousRegularFont;
 		fontSize: 20.
@@ -536,7 +536,7 @@ GtCoderSlideshow >> createClassExplanationWithLinks [
 		addChild: ((self yellowExplanationTargetCircleFor: #addClassButton) relocate: 2 @ 10).
 
 	^ BlElement new
-		constraintsDo: [ :c | 
+		constraintsDo: [ :c |
 			c vertical matchParent.
 			c horizontal matchParent ];
 		aptitude: BrShadowAptitude;
@@ -571,7 +571,7 @@ GtCoderSlideshow >> createMethodExplanationText [
 ' the code or ' asRopedText,
 ('delete' asRopedText glamorousExplanationFor: #deleteMethodButton),
 ' it if you don''t like it.' asRopedText.
-		
+
 	^ text asRopedText
 		glamorousRegularFont;
 		fontSize: 20.
@@ -585,7 +585,7 @@ GtCoderSlideshow >> createMethodExplanationWithLinks [
 	aScripter element: (GtClassCoderLiveSlide new class: GtABAddressBook) asElement.
 
 	aScripter
-		clickStep: [ :s | 
+		clickStep: [ :s |
 			s
 				label: 'Click add method button';
 				id: GtPharoAddNewMethodButtonId ].
@@ -597,7 +597,7 @@ GtCoderSlideshow >> createMethodExplanationWithLinks [
 
 	newFrameTarget
 		allChildrenBreadthFirstDetect: [ :aChild | aChild isKindOf: BrToolbar ]
-		ifFound: [ :aChild | 
+		ifFound: [ :aChild |
 			saveButtonTarget := aChild childAt: 1.
 			removeButtonTarget := aChild childAt: 2 ].
 
@@ -617,7 +617,7 @@ GtCoderSlideshow >> createMethodExplanationWithLinks [
 				relocate: 2 @ removeButtonTarget extent y / 2).
 
 	^ BlElement new
-		constraintsDo: [ :c | 
+		constraintsDo: [ :c |
 			c vertical matchParent.
 			c horizontal matchParent ];
 		aptitude: BrShadowAptitude;
@@ -633,7 +633,7 @@ GtCoderSlideshow >> createMethodScripter [
 	aScripter := BlScripter new.
 	aScripter element: (GtClassCoderLiveSlide new class: GtABAddressBook) asElement.
 	aScripter
-		clickStep: [ :s | 
+		clickStep: [ :s |
 			s
 				label: 'Click add method button';
 				id: GtPharoAddNewMethodButtonId ].
@@ -645,10 +645,10 @@ GtCoderSlideshow >> ensureOldFilterWidgetsDuring: aBlock [
 	| aStencilClass |
 	aStencilClass := GtPharoStreamingMethodsFiltersElementStencil
 			defaultStencilClassOrNil.
-	^ [ 
+	^ [
 		GtPharoStreamingMethodsFiltersElementStencil beDescriptorsStencilDefault.
 		aBlock value ]
-		ensure: [ 
+		ensure: [
 			GtPharoStreamingMethodsFiltersElementStencil
 				defaultStencilClass: aStencilClass ]
 ]
@@ -675,7 +675,7 @@ GtCoderSlideshow >> exampleMethodsExplanationText [
 ' or ' asRopedText,
 ('debug' asRopedText glamorousExplanationFor: #debugButton),
 ' your example method.' asRopedText.
-	
+
 	^ text asRopedText
 		glamorousRegularFont;
 		fontSize: 20.
@@ -692,7 +692,7 @@ GtCoderSlideshow >> exampleMethodsExplanationWithLinks [
 	aScripter element: classCoderElement.
 
 	aScripter
-		clickStep: [ :s | 
+		clickStep: [ :s |
 			s
 				label: 'Expand first method';
 				// (GtSourceCoderId indexed: 1) ].
@@ -703,7 +703,7 @@ GtCoderSlideshow >> exampleMethodsExplanationWithLinks [
 			allChildrenBreadthFirstDetect: [ :aChild | aChild isKindOf: BrInfiniteListElement ]
 			ifFound: [ :aChild | aChild childAt: 1 ].
 	pragmaTarget := expandedMethodElement
-			allChildrenBreadthFirstDetect: [ :aChild | 
+			allChildrenBreadthFirstDetect: [ :aChild |
 				(aChild isKindOf: BrTextElementWithCursors)
 					and: [ aChild text asString includesSubstring: '<gtExample>' ] ]
 			ifFound: [ :aChild | aChild ].
@@ -750,7 +750,7 @@ GtCoderSlideshow >> searchMethodScripter [
 	aScripter := BlScripter new.
 	aScripter element: (GtClassCoderLiveSlide new class: GtABAddressBook) asElement.
 	aScripter
-		clickStep: [ :s | 
+		clickStep: [ :s |
 			s
 				label: 'Click search method button';
 				id: GtPharoSearchCodeButtonId ].
