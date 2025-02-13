@@ -88,7 +88,7 @@ GtCoderSlideshow >> baselineMethodsExplanationText [
 ('baseline' asRopedText glamorousExplanationFor: #baseline),
 ' defining the dependencies of the Bloc project. Each dependency is represented by a ' asRopedText,
 ('string' asRopedText glamorousExplanationFor: #string),
-' denoting its name. Coder recognizes this and allows us to expand ' asRopedText,
+' denoting its name. Coder recognizes this and allows us to ' asRopedText,
 ('expand' asRopedText glamorousExplanationFor: #expandButton),
 ' the string in place and browse the corresponding dependency.' asRopedText.
 
